@@ -15,10 +15,6 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     runs-on: ubuntu-latest
     
-    defaults:
-      run:
-        working-directory: "./terraform"
-    
     steps:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v2
@@ -31,3 +27,15 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: whoami
+        
+    - name: Get latest tag
+      id: latest_tag
+      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+      with:
+        org: 'simplonasa'  # Docker Hub user or organisation name
+        repo: 'azure_voting_app'  # Docker Hub repository name
+
+    # Optionally check the tag we got back
+    - name: Check outputs
+      run: |
+        echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
