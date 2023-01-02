@@ -39,7 +39,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: |
-          docker run -d --name votingapp simplonasa/azure_voting_app:${{ steps.latest_tag.outputs.tag }} sleep infinity
-          docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower ubuntu-container
+          sudo docker run -d --name votingapp simplonasa/azure_voting_app:${{ steps.latest_tag.outputs.tag }} sleep infinity
+          sudo docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower ubuntu-container
 
 # https://www.digitalocean.com/community/tutorials/how-to-automatically-update-docker-container-images-with-watchtower-on-ubuntu-22-04#step-1-watching-an-externally-maintained-docker-image-using-docker-s-run-command
