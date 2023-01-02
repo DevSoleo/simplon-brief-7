@@ -37,6 +37,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: 22
         script: |
-          sudo docker run -d --name redis -v /myredis/conf:/usr/local/etc/redisredis redis-server --save 60 1 --loglevel warning
+          sudo docker run -d --name redis -v /myredis/conf:/usr/local/etc/redisredis redis --save 60 1 --loglevel warning
           sudo docker run -d --name votingapp -e REDIS=redis -e REDIS_PWD=password -e REDIS_TLS=ON simplonasa/azure_voting_app:${{ steps.latest_tag.outputs.tag }} sleep infinity
           sudo docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower votingapp
