@@ -38,5 +38,5 @@ jobs:
         port: 22
         script: |
           sudo docker run -d --name redisapp redis
-          sudo docker run -d --name votingapp -p 80:80 -e REDIS=redisapp -e REDIS_PWD=password -e REDIS_TLS=ON simplonasa/azure_voting_app:${{ steps.latest_tag.outputs.tag }} sleep infinity
+          sudo docker run -d --name votingapp -p 80:80 simplonasa/azure_voting_app:${{ steps.latest_tag.outputs.tag }} sleep infinity
           sudo docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower votingapp
