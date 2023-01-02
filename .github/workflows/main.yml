@@ -23,24 +23,11 @@ jobs:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v2
 
-    - name: Terraform fmt
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
-
-    - name: Terraform Init
-      id: init
-      run: terraform init
-
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
-
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -no-color
-      continue-on-error: true
-      
-    - name: Terraform Apply
-      id: apply
-      run: terraform apply -auto-approve
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: 20.172.251.107
+        username: azureuser
+        key: ${{ secrets.KEY }}
+        port: 22
+        script: whoami
