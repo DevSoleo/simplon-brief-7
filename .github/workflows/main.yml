@@ -18,6 +18,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v2
+    
+    - name: Get latest tag
+      id: latest_tag
+      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+      with:
+        org: 'simplonasa'  # Docker Hub user or organisation name
+        repo: 'azure_voting_app'  # Docker Hub repository name
+
+    # Optionally check the tag we got back
+    - name: Check outputs
+      run: |
+        echo "Latest Image Tag - ${{ steps.latest_tag.outputs.tag }}"
 
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@v0.1.6
@@ -26,11 +38,8 @@ jobs:
         username: azureuser
         key: ${{ secrets.KEY }}
         port: 22
-        script: whoami
-
-    - name: Check outputs
-      run: |
-        docker run -d --name votingapp simplonasa/azure_voting_app sleep infinity
-        docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower ubuntu-container
+        script: |
+          docker run -d --name votingapp simplonasa/azure_voting_app:${{ steps.latest_tag.outputs.tag }} sleep infinity
+          docker run -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower ubuntu-container
 
 # https://www.digitalocean.com/community/tutorials/how-to-automatically-update-docker-container-images-with-watchtower-on-ubuntu-22-04#step-1-watching-an-externally-maintained-docker-image-using-docker-s-run-command
