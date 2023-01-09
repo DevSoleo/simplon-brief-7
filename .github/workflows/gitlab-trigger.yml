@@ -8,4 +8,4 @@ jobs:
     steps:
     - name: Trigger pipeline
       run: |
-        curl -X POST --fail -F token=TOKEN -F ref=REF_NAME https://gitlab.com/api/v4/projects/35808802/trigger/pipeline
+        curl -X POST --fail -F token=glptt-b56caaf9f2bf0adbcd177165bea59a426bf9e79a -F ref=REF_NAME https://gitlab.com/api/v4/projects/35808802/trigger/pipeline
