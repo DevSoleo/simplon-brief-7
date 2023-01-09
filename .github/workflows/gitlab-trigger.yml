@@ -1,0 +1,11 @@
+name: 'GitLab trigger'
+on: [workflow_dispatch]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Trigger pipeline
+      run: |
+        curl -X POST --fail -F token=TOKEN -F ref=REF_NAME https://gitlab.com/api/v4/projects/35808802/trigger/pipeline
