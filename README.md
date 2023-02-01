@@ -7,3 +7,6 @@ Création des secrets :
 
 Déploiement :
 `kubectl apply -f infra.yml`
+
+Acceder au site :
+`kubectl get svc --watch`
