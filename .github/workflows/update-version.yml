@@ -1,0 +1,12 @@
+name: 'Update version'
+on: [workflow_dispatch]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Update
+      run: |
+        snap install jq
+        curl 'https://hub.docker.com/v2/repositories/simplonasa/azure_voting_app/tags' | jq '."results"[0]["name"]'|sed -e 's/^"//' -e 's/"$//'
