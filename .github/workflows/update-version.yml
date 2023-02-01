@@ -1,5 +1,8 @@
 name: 'Update version'
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+  schedule:
+  - cron: '30 * * * *'
 
 jobs:
   publish:
