@@ -7,7 +7,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: "./terraform"
+        working-directory: "./"
         
     steps:
     - name: Update
