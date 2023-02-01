@@ -5,8 +5,15 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     
+    defaults:
+      run:
+        working-directory: "./terraform"
+        
     steps:
     - name: Update
       run: |
         sudo snap install jq
-        curl 'https://hub.docker.com/v2/repositories/simplonasa/azure_voting_app/tags' | jq '."results"[0]["name"]'
+        VERSION=$(curl 'https://hub.docker.com/v2/repositories/simplonasa/azure_voting_app/tags' | jq '."results"[0]["name"]' | sed 's/"//g; s/}//g')
+        sed -i "s/\$VERSION/$VERSION/" voting-app-model.yml
+        kubectl apply -f voting-app-model.yml
+        
