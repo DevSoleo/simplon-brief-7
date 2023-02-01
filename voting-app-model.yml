@@ -18,7 +18,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: alfred-voting
-        image: simplonasa/azure_voting_app:v1.0.11
+        image: simplonasa/azure_voting_app:@VERSION_APP@
         resources:
           requests:
             cpu: 100m
