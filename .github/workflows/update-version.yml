@@ -15,4 +15,4 @@ jobs:
         sudo snap install jq
         VERSION=$(curl 'https://hub.docker.com/v2/repositories/simplonasa/azure_voting_app/tags' | jq -r '."results"[0]["name"]')
         sed -i "s/@VERSION_APP@/$VERSION/" voting-app-model.yml
-        kubectl apply -f voting-app-model.yml
+        kubectl apply -f voting-app-model.yml`
