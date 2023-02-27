@@ -10,6 +10,16 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    
+    - name: AKS Login
+      uses: wemogy/aks-login-action@1.2.1
+      with:
+        name: my-aks-cluster
+        resource-group: myResourceGroup-brief7
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    
     - name: Update
       run: |
         ls -la
