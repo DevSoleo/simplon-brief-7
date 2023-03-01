@@ -1,4 +1,4 @@
-name: 'Docker'
+name: 'Watch Tower'
 on: [workflow_dispatch]
 
 permissions:
