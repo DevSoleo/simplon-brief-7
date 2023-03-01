@@ -1,4 +1,4 @@
-name: 'Cron'
+name: 'Cron (new)'
 on: 
   workflow_dispatch:
   #schedule:
