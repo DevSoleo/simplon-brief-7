@@ -16,9 +16,7 @@ flowchart LR
 > Pour déployer cette infrastructure, lire le [README.md](https://github.com/DevSoleo/simplon-brief-6/blob/main/README.md#d%C3%A9ploiement) du brief 6.
 ## Méthode 1 : Watch Tower
 
-:::danger
-Cette méthode ne correspond pas aux exigences du brief.
-:::
+> Cette méthode ne correspond pas aux exigences du brief.
 
 ### Pipeline
 
@@ -49,9 +47,7 @@ Documentation de watchtower : https://containrrr.dev/watchtower/
 
 ## Méthode 2 : Kubernetes
 
-:::success
-Cette méthode correspond aux exigences du brief.
-:::
+> Cette méthode correspond aux exigences du brief.
 
 ### Pipeline 
 Avant l'éxécution du pipeline, l'infrastructure doit y être déployée au moins une première fois. 
